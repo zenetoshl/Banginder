@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "577753223059",
+    "firebase_url": "https://banginder-59b1c.firebaseio.com",
+    "project_id": "banginder-59b1c",
+    "storage_bucket": "banginder-59b1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577753223059:android:493ded35bb85b43f",
+        "android_client_info": {
+          "package_name": "com.banginder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577753223059-el5nlfth4ep0502d4i79j8j1gubge4lc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXruxjVWp1eydn2rTqac0HfvrEHX5f43o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577753223059-el5nlfth4ep0502d4i79j8j1gubge4lc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
