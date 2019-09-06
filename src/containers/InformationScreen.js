@@ -129,6 +129,7 @@ class InformationScreen extends React.Component {
               title={name}
               onPress={this.avatarSubmit}
               activeOpacity={0.7}
+              showEditButton
             />
           </View>
           <View>

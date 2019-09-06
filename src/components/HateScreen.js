@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, Text, Button, ScrollView, Alert } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
-import TinderCard from '../components/TinderCard';
-import { Card, Divider } from 'react-native-elements';
+import { ScrollView, Button, Modal } from 'react-native';
 import firebase from 'react-native-firebase';
+import HateCard from './HateCard';
 
-class TinderScreen extends React.Component {
+class HateScreen extends React.Component {
   state = {
-    hateList: ['']
+    hateList: [],
+    loading: true
   };
 
   componentDidMount = () => {
@@ -28,14 +27,15 @@ class TinderScreen extends React.Component {
   };
 
   render() {
-    const { user, loading } = this.state;
+    const { hateList } = this.state;
     return (
       <ScrollView>
-        <Spinner visible={loading} textContent='Loading...' />
-        <TinderCard list={this.state.hateList || ['']} />
+        {hateList.map(e => (
+          <HateCard uid={e} />
+        ))}
       </ScrollView>
     );
   }
 }
 
-export default TinderScreen;
+export default HateScreen;

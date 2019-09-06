@@ -1,5 +1,6 @@
 import React from 'react';
-import {ScrollView, Text} from 'react-native';
+import { ScrollView, Text, Button } from 'react-native';
+import {Avatar} from 'react-native-elements'
 import firebase from 'react-native-firebase';
 
 class SettingsScreen extends React.Component {
@@ -8,7 +9,7 @@ class SettingsScreen extends React.Component {
     displayName: '',
     bio: '',
     likes: [],
-    dislikes: [],
+    dislikes: []
   };
 
   componentDidMount = () => {
@@ -25,15 +26,25 @@ class SettingsScreen extends React.Component {
           displayName: `${data.name} ${data.surname}`,
           bio: data.bio,
           likes: data.likes,
-          dislikes: data.dislikes,
+          dislikes: data.dislikes
         });
       });
   };
   render() {
-    const {displayName, photoUrl} = this.state;
+    const { displayName, photoUrl, bio } = this.state;
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={{alignItems:"center"}}>
+        <Avatar
+          rounded
+          size={100}
+          source={{
+            uri:
+              photoUrl
+          }}
+        />
         <Text>{displayName}</Text>
+        <Text>{bio}</Text>
+        <Button title='SignOut' onPress={() => firebase.auth().signOut()} />
       </ScrollView>
     );
   }
