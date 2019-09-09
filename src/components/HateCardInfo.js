@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Button, Text } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Avatar } from 'react-native-elements';
 import firebase from 'react-native-firebase';
-import HateText from './HateText'
+import HateText from './HateText';
 
 class HateCardInfo extends React.Component {
   state = {
     photoUrl: '',
     displayName: '',
     likes: [''],
-    dislikes: [''],
+    dislikes: ['']
   };
 
   componentDidMount = () => {
@@ -26,7 +26,7 @@ class HateCardInfo extends React.Component {
           photoUrl: data.url,
           displayName: `${data.name} ${data.surname}`,
           likes: data.likes,
-          dislikes: data.dislikes,
+          dislikes: data.dislikes
         }).then(() => this.setState({ loading: false }));
       })
       .catch(() => this.setState({ loading: false }));
@@ -34,13 +34,15 @@ class HateCardInfo extends React.Component {
 
   render() {
     const { displayName, photoUrl, likes, dislikes } = this.state;
+    const {navigation, uid} = this.props;
     return (
       <View>
         <ListItem
           key={Math.random()}
           title={displayName}
-          leftAvatar={{ uri: `${photoUrl}` }}
-          subtitle = {<HateText Ulikes={likes} Udislikes={dislikes} />}
+          leftAvatar={<Avatar rounded size={60} source={{ uri: photoUrl }} />}
+          subtitle={<HateText Ulikes={likes} Udislikes={dislikes} />}
+          onPress={()=> navigation.navigate('Chat', {uid: uid})}
         />
       </View>
     );

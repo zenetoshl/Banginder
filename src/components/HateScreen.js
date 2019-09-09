@@ -12,18 +12,21 @@ class HateScreen extends React.Component {
   componentDidMount = () => {
     const firestore = firebase.firestore();
     const user = firebase.auth().currentUser;
-    this.setState({ loading: true });
-    firestore
-      .collection('Hate')
-      .doc(user.uid)
-      .collection('HateList')
-      .get()
-      .then(snap => {
-        this.setState({
-          hateList: snap.docs.map(e => e.id)
-        }).then(() => this.setState({ loading: false }));
-      })
-      .catch(() => this.setState({ loading: false }));
+    const { navigation } = this.props;
+    navigation.addListener('willFocus', () => {
+      this.setState({ loading: true });
+      firestore
+        .collection('Hate')
+        .doc(user.uid)
+        .collection('HateList')
+        .get()
+        .then(snap => {
+          this.setState({
+            hateList: snap.docs.map(e => e.id)
+          }).then(() => this.setState({ loading: false }));
+        })
+        .catch(() => this.setState({ loading: false }));
+    });
   };
 
   render() {

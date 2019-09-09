@@ -21,9 +21,7 @@ const style = StyleSheet.create({
 });
 
 class SettingsScreen extends React.Component {
-  static navigationOptions = {
-    tabBarIcon: () => <IconComponent name="setting" size={25} color={"black"} />
-  };
+  
 
   state = {
     photoUrl: "",

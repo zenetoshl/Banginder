@@ -9,9 +9,6 @@ import icons from "react-native-vector-icons/AntDesign";
 const IconComponent = icons;
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    tabBarIcon: () => <IconComponent name="home" size={25} color={"black"} />
-  };
 
   state = {
     isNotRegister: !!firebase.auth().currentUser.displayName === false

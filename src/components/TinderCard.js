@@ -154,8 +154,12 @@ class TinderCard extends React.Component {
         .collection('HateList')
         .doc(enemyUid)
         .set({
-          date: '',
-          message: ''
+          message: [
+            {
+              text: '',
+              date: ''
+            }
+          ]
         })
         .then(func);
     }
