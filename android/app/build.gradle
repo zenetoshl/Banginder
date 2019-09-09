@@ -150,6 +150,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+         release {
+            //if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile rootProject.file('my-upload-key.keystore')
+                storePassword '070396'
+                keyAlias 'my-key-alias'
+                keyPassword '070396'
+            //}
+        }
     }
     buildTypes {
         debug {
@@ -161,6 +169,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -189,7 +198,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-fetch-blob')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-firebase')
     implementation fileTree(dir: "libs", include: ["*.jar"])

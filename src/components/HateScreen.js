@@ -28,10 +28,11 @@ class HateScreen extends React.Component {
 
   render() {
     const { hateList } = this.state;
+    const { navigation } = this.props;
     return (
       <ScrollView>
         {hateList.map(e => (
-          <HateCard uid={e} />
+          <HateCard uid={e} navigation={navigation} />
         ))}
       </ScrollView>
     );

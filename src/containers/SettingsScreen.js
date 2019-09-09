@@ -1,13 +1,34 @@
-import React from 'react';
-import { ScrollView, Text, Button } from 'react-native';
-import {Avatar} from 'react-native-elements'
-import firebase from 'react-native-firebase';
+import React from "react";
+import { ScrollView, Text, Dimensions, StyleSheet } from "react-native";
+import { Avatar, Button, Icon } from "react-native-elements";
+import icons from "react-native-vector-icons/AntDesign";
+import firebase from "react-native-firebase";
+
+const dimensions = Dimensions.get("window");
+const IconComponent = icons;
+
+const style = StyleSheet.create({
+  loginBtn: {
+    width: "70%",
+    marginTop: 30,
+    alignItems: "center",
+    borderWidth: 2
+  },
+  loginBtnTitle: {
+    color: "white",
+    width: "100%"
+  }
+});
 
 class SettingsScreen extends React.Component {
+  static navigationOptions = {
+    tabBarIcon: () => <IconComponent name="setting" size={25} color={"black"} />
+  };
+
   state = {
-    photoUrl: '',
-    displayName: '',
-    bio: '',
+    photoUrl: "",
+    displayName: "",
+    bio: "",
     likes: [],
     dislikes: []
   };
@@ -16,7 +37,7 @@ class SettingsScreen extends React.Component {
     const firestore = firebase.firestore();
     const user = firebase.auth().currentUser;
     firestore
-      .collection('registerInfo')
+      .collection("registerInfo")
       .doc(user.uid)
       .get()
       .then(snap => {
@@ -33,18 +54,35 @@ class SettingsScreen extends React.Component {
   render() {
     const { displayName, photoUrl, bio } = this.state;
     return (
-      <ScrollView contentContainerStyle={{alignItems:"center"}}>
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center", marginTop: 90 }}
+      >
         <Avatar
           rounded
-          size={100}
+          size={200}
           source={{
-            uri:
-              photoUrl
+            uri: photoUrl
           }}
         />
-        <Text>{displayName}</Text>
-        <Text>{bio}</Text>
-        <Button title='SignOut' onPress={() => firebase.auth().signOut()} />
+        <Text style={{ fontSize: 30, alignSelf: "center", marginTop: 30 }}>
+          {displayName}
+        </Text>
+        <Text
+          style={{
+            fontSize: 20,
+            alignSelf: "center",
+            marginTop: 15,
+            marginBottom: 24
+          }}
+        >
+          {bio}
+        </Text>
+        <Button
+          buttonStyle={style.loginBtn}
+          titleStyle={style.loginBtnTitle}
+          title="Sair"
+          onPress={() => firebase.auth().signOut()}
+        />
       </ScrollView>
     );
   }

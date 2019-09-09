@@ -15,7 +15,7 @@ import InformationScreen from '../containers/InformationScreen';
 
 const mainTab = createBottomTabNavigator({
   Home: HomeScreen,
-  Links: TinderScreen,
+  Pessoas: TinderScreen,
   Settings: SettingsScreen,
 });
 const mainStack = createStackNavigator(

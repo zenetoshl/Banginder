@@ -1,13 +1,22 @@
-import React from 'react';
-import { View, Text, Button, ScrollView, Alert } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
-import TinderCard from '../components/TinderCard';
-import { Card, Divider } from 'react-native-elements';
-import firebase from 'react-native-firebase';
+import React from "react";
+import { View, Text, ScrollView, Alert } from "react-native";
+import Spinner from "react-native-loading-spinner-overlay";
+import TinderCard from "../components/TinderCard";
+import { Card, Divider, Button } from "react-native-elements";
+import firebase from "react-native-firebase";
+import icons from "react-native-vector-icons/AntDesign";
+
+const IconComponent = icons;
 
 class TinderScreen extends React.Component {
+  static navigationOptions = {
+    tabBarIcon: () => (
+      <IconComponent name="deleteuser" size={25} color={"black"} />
+    )
+  };
+
   state = {
-    hateList: ['']
+    hateList: [""]
   };
 
   componentDidMount = () => {
@@ -15,9 +24,9 @@ class TinderScreen extends React.Component {
     const user = firebase.auth().currentUser;
     this.setState({ loading: true });
     firestore
-      .collection('Hate')
+      .collection("Hate")
       .doc(user.uid)
-      .collection('HateList')
+      .collection("HateList")
       .get()
       .then(snap => {
         this.setState({
@@ -31,8 +40,8 @@ class TinderScreen extends React.Component {
     const { user, loading } = this.state;
     return (
       <ScrollView>
-        <Spinner visible={loading} textContent='Loading...' />
-        <TinderCard list={this.state.hateList || ['']} />
+        <Spinner visible={loading} textContent="Loading..." />
+        <TinderCard list={this.state.hateList || [""]} />
       </ScrollView>
     );
   }
