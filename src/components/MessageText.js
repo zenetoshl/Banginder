@@ -25,7 +25,7 @@ class MessageText extends React.Component {
       .doc(secondUid)
       .get()
       .then(snap => {
-        const newObj = snap.data().message.filter(e=> e.text !== '')
+        const newObj = snap.data().message.filter(e => e.text !== '');
         this.setState({
           message: newObj || [{ text: '', date: '' }]
         }).then(() => {
@@ -48,7 +48,9 @@ class MessageText extends React.Component {
           </Card>
         </View>
       ) : (
-        <View style={{ alignSelf: 'center' }} ><Text>- Não há mensagens nesta seção -</Text></View>
+        <View style={{ alignSelf: 'center' }}>
+          <Text>- Não há mensagens nesta seção -</Text>
+        </View>
       )
     );
   }

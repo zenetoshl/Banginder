@@ -55,7 +55,8 @@ class messageScreen extends React.Component {
   };
 
   render() {
-    const { displayName, photoUrl, bio, list } = this.state;
+    const { displayName, photoUrl, bio } = this.state;
+    const {navigation} = this.props
     const user = firebase.auth().currentUser;
     const userUid = this.props.navigation.getParam('uid');
     return (
@@ -96,7 +97,7 @@ class messageScreen extends React.Component {
             <MessageText firstUid={user.uid} secondUid={userUid} />
           </View>
           <Text>Nova Mensagem: </Text>
-          <MessageSender firstUid={user.uid} secondUid={userUid} />
+          <MessageSender firstUid={user.uid} secondUid={userUid} navigation={navigation} />
         </ScrollView>
       </ScrollView>
     );

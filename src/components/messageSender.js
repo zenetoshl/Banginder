@@ -25,7 +25,9 @@ class MessageSender extends React.Component {
       .set({
         message: [obj, ...list]
       })
-      .then(() => this.setState({ newMessage: '', loading: false }));
+      .then(() => {
+        this.props.navigation.goBack();  
+        this.setState({ newMessage: '', loading: false })});
   };
 
   componentDidMount = () => {
@@ -61,9 +63,7 @@ class MessageSender extends React.Component {
         <Button
           title='Enviar Mensagem'
           style={{ marginLeft: 10, marginRight: 10, marginBottom: 10 }}
-          onPress={() => {
-            this.submitMessage();
-          }}
+          onPress={this.submitMessage}
         />
       </ScrollView>
     );

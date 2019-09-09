@@ -46,7 +46,10 @@ const mainTab = createBottomTabNavigator(
           />
         );
       }
-    })
+    }),
+    tabBarOptions: {
+      keyboardHidesTabBar: true,
+    }
   }
 );
 const mainStack = createStackNavigator(
